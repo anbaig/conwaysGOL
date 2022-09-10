@@ -1,0 +1,9 @@
+#fpsCounter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#count {
+  margin-left: 20px;
+}
