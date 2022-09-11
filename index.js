@@ -41,13 +41,20 @@ for (let x = 0; x < gridArray.length; x++) {
 
 // Place the intial cells
 screen.addEventListener('click', (e) => {
-    mouseX = e.clientX
-    mouseY = e.clientY
-    gridX = Math.floor(mouseX / cellSize)
-    gridY = Math.floor(mouseY / cellSize)
+    const mouseX = e.pageX
+    const mouseY = e.pageY
+    const gridX = Math.floor(mouseX / cellSize)
+    const gridY = Math.floor(mouseY / cellSize)
 
-    gridArray[gridX][gridY] = true
-    ctx.fillRect(gridX * cellSize, gridY * cellSize, cellSize, cellSize)
+    const cellState = gridArray[gridX][gridY]
+    if(cellState) {
+        gridArray[gridX][gridY] = false
+        ctx.clearRect(gridX * cellSize, gridY * cellSize, cellSize, cellSize)
+        ctx.strokeRect(gridX * cellSize, gridY * cellSize, cellSize, cellSize)
+    } else {
+        gridArray[gridX][gridY] = true
+        ctx.fillRect(gridX * cellSize, gridY * cellSize, cellSize, cellSize)
+    }
 })
 
 function animate() {
